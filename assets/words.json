@@ -1,0 +1,224 @@
+{
+  "Animals": [
+    {
+      "def": "Garadu",
+      "eng": "Mouse",
+      "spa": "Raton",
+      "aud": "sounds/animal_mouse.m4a"
+    },
+    {
+      "def": "Mesu",
+      "eng": "Cat",
+      "spa": "Gato",
+      "aud": "sounds/animal_cat.m4a"
+    },
+    {
+      "def": "Burigu",
+      "eng": "Donkey",
+      "spa": "Burro",
+      "aud": "sounds/animal_donkey.m4a"
+    },
+    {
+      "def": "Gaballu",
+      "eng": "Horse",
+      "spa": "Caballo",
+      "aud": "sounds/animal_horse.m4a"
+    },
+    {
+      "def": "Ounli",
+      "eng": "Dog",
+      "spa": "Perro",
+      "aud": "sounds/animal_dog.m4a"
+    },
+    {
+      "def": "Dunuru",
+      "eng": "Dove",
+      "spa": "Pajaro, Paloma",
+      "aud": "sounds/animal_dove.m4a"
+    },
+    {
+      "def": "Yalifu",
+      "eng": "Pelican",
+      "spa": "Pelicano",
+      "aud": "sounds/animal_pelican.m4a"
+    },
+    {
+      "def": "Gabara",
+      "eng": "Goat",
+      "spa": "Cabra",
+      "aud": "sounds/animal_goat.m4a"
+    },
+    {
+      "def": "Vagasu",
+      "eng": "Cow",
+      "spa": "Vaca",
+      "aud": "sounds/animal_cow.m4a"
+    },
+    {
+      "def": "Buiruju",
+      "eng": "Pig",
+      "spa": "Cerdo",
+      "aud": "sounds/animal_pig.m4a"
+    },
+    {
+      "def": "Marin",
+      "eng": "Mosquito",
+      "spa": "Zancudo",
+      "aud": "sounds/animal_mosquito.m4a"
+    },
+    {
+      "def": "Hewe",
+      "eng": "Snake",
+      "spa": "Serpiente",
+      "aud": "sounds/animal_snake.m4a"
+    },
+    {
+      "def": "Babunu",
+      "eng": "Monkey",
+      "spa": "Mono",
+      "aud": "sounds/animal_monkey.m4a"
+    },
+    {
+      "def": "Masaraga",
+      "eng": "Rabbit",
+      "spa": "Conejo",
+      "aud": "sounds/animal_rabbit.m4a"
+    },
+    {
+      "def": "Hua",
+      "eng": "Frog",
+      "spa": "Sapo",
+      "aud": "sounds/animal_frog.m4a"
+    },
+    {
+      "def": "Ariran",
+      "eng": "Hen",
+      "spa": "Gallina",
+      "aud": "sounds/animal_hen.m4a"
+    },
+    {
+      "def": "Gallu",
+      "eng": "Rooster",
+      "spa": "Gallo",
+      "aud": "sounds/animal_rooster.m4a"
+    },
+    {
+      "def": "Huru",
+      "eng": "Crab",
+      "spa": "Cangrejo",
+      "aud": "sounds/animal_crab.m4a"
+    }
+  ],
+  "Colors": [
+    {
+      "def": "Funati",
+      "eng": "Red",
+      "spa": "Rojo",
+      "aud": ""
+    },
+    {
+      "def": "Dinguti",
+      "eng": "Blue",
+      "spa": "Azul",
+      "aud": ""
+    },
+    {
+      "def": "Wurigili",
+      "eng": "Green",
+      "spa": "Verde",
+      "aud": ""
+    },
+    {
+      "def": "Wuriti",
+      "eng": "Black",
+      "spa": "Negro",
+      "aud": ""
+    },
+    {
+      "def": "Haruti",
+      "eng": "white",
+      "spa": "Blanco",
+      "aud": ""
+    },
+    {
+      "def": "Dumari",
+      "eng": "Yellow",
+      "spa": "Amarillo",
+      "aud": ""
+    },
+    {
+      "def": "Aransu",
+      "eng": "Orange",
+      "spa": "Naranja",
+      "aud": ""
+    },
+    {
+      "def": "Guchu",
+      "eng": "Purple",
+      "spa": "Morado",
+      "aud": ""
+    },
+    {
+      "def": "Buruwati",
+      "eng": "Grey",
+      "spa": "Gris",
+      "aud": ""
+    },
+    {
+      "def": "Rosouti",
+      "eng": "Pink",
+      "spa": "Rosa",
+      "aud": ""
+    },
+    {
+      "def": "Saüti",
+      "eng": "Brown",
+      "spa": "Cafe",
+      "aud": ""
+    }
+  ],
+  "Days" : [
+    {
+      "def": "Dimasu",
+      "eng": "Sunday",
+      "spa": "Domingo",
+      "aud": ""
+    },
+    {
+      "def": "Leindi",
+      "eng": "Monday",
+      "spa": "Lunes",
+      "aud": ""
+    },
+    {
+      "def": "Luagu Biama",
+      "eng": "Tuesday",
+      "spa": "Martes",
+      "aud": ""
+    },
+    {
+      "def": "Luagu Ürüwa",
+      "eng": "Wednesday",
+      "spa": "Miercoles",
+      "aud": ""
+    },
+    {
+      "def": "Luagu Gádürü",
+      "eng": "Thursday",
+      "spa": "Jueves",
+      "aud": ""
+    },
+    {
+      "def": "Wándaradi",
+      "eng": "Friday",
+      "spa": "Viernes",
+      "aud": ""
+    },
+    {
+      "def": "Samudi",
+      "eng": "Saturday",
+      "spa": "Sabado",
+      "aud": ""
+    }
+  ]
+}

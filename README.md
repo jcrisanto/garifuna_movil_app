@@ -1,4 +1,4 @@
-# garifuna_movil_app
+# Garifuna App
 
 A new Flutter project.
 
