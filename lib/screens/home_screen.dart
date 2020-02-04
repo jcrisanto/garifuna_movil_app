@@ -5,37 +5,44 @@ import 'package:garifuna_movil_app/screens/category_screen.dart';
 import 'package:garifuna_movil_app/ui/fab.widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.title}) : super(key: key);
   final String title;
+  
+  HomeScreen({this.title});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
-  static var appTitle = Text('Garifuna App');
-
-  static var searchBar = TextField(
-    cursorColor: Colors.white,
-    style: TextStyle(color: Colors.white),
-    decoration: InputDecoration(
-      hintText: 'Buscar',
-      hintStyle: TextStyle(color: Colors.white54),
-    ),
-  );
-
-  Widget currentWidget = appTitle;
+  Text appTitle;
+  String search = '';
+  TextEditingController searchController;
+  TextField searchBar;
+  Widget currentWidget;
   var searchIcon = MyIcons.searchIcon;
   TabController tabController;
   Color appBarColor;
-
   var searchIsVisible = false;
   var fabIsVisible = false;
-
+  final GlobalKey<DictionaryFragmentState> _myWidgetState = GlobalKey<DictionaryFragmentState>();
   
   @override
   void initState() {
     super.initState();
+    appTitle = Text(widget.title);
+    searchController = TextEditingController();
+    searchBar = TextField(
+      autofocus: true,
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        hintText: 'Buscar',
+        hintStyle: TextStyle(color: Colors.white54),
+      ),
+      controller: searchController,
+    );
+    currentWidget = appTitle;
+
     appBarColor = Color(0xFF009688);
     tabController = TabController(length: 2, vsync: this);
     tabController.addListener(() {
@@ -48,17 +55,20 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           appBarColor = Color(0xFF009688);
           fabIsVisible = false;
           searchIsVisible = false;
+          currentWidget = appTitle;
+          searchIcon = MyIcons.searchIcon;
         }
       });
+    });
+    searchController.addListener(() {
+       _myWidgetState.currentState.updateList(searchController.text);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     List<String> options = <String>[
-      'Share application',
-      'Show all words',
-      'Hide words'
+      'Share application'
     ];
     void optionAction(String option) {}
 
@@ -90,6 +100,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     } else {
                       currentWidget = appTitle;
                       searchIcon = MyIcons.searchIcon;
+                      searchController.text = '';
+                      _myWidgetState.currentState.fillList();
                     }
                   });
                 },
@@ -110,12 +122,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         body: TabBarView(
           controller: tabController,
           children: <Widget>[
-            CategoriesFragment((title){
+            CategoriesFragment((title, group){
               Navigator.push(context, MaterialPageRoute(
-                builder: (_context) => CategoryScreen(title),
+                builder: (_context) => CategoryScreen(title, group),
               ));
             }), 
-            DictionaryFragment(),
+            DictionaryFragment(key:_myWidgetState),
            ],
         ),
         floatingActionButton: Fab(

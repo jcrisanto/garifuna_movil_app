@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:garifuna_movil_app/screens/home_screen.dart';
 
 
-void main() => runApp(MyApp());
+void main() async {
+  runApp(MyApp());
+} 
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,7 +15,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Color(0xFF009688),
           primaryColorDark: Color(0xFF00796B),
-          accentColor: Color(0xFFFFC107)),
+          accentColor: Color(0xFFFFC107),
+          fontFamily: 'Gotham'
+          ),
       home: HomeScreen(title: 'Garifuna App'),
     );
   }

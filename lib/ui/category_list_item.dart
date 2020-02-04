@@ -1,43 +1,46 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
-import 'package:garifuna_movil_app/models/word.dart';
+import 'package:garifuna_movil_app/models/wordDB.dart';
 
 class CategoryListItem extends StatelessWidget {
-  final Word word;
+  final WordDb word;
+  final AudioCache player = new AudioCache();
+
   CategoryListItem(this.word);
-  AudioCache player = new AudioCache();
+  
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(word.englishTranslation),
-                Text(word.defaultTranslation, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
-                Text(word.spanishTranslation)
-              ],
-            ),
-            GestureDetector(
-              onTap: () {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(word.eng),
+                  Text(word.def, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                  Text(word.spa)
+                ],
+              ),
+              GestureDetector(
+                onTap: () {
 
-                
-                player.play(word.audioPath).whenComplete((){
-                  player.clear(word.audioPath);
-                });
-                
-              },
-              child: Icon(Icons.speaker, color: Theme.of(context).accentColor)
-              )
-          ],
-        ),
-        Divider(
-              color: Theme.of(context).primaryColor,
-            )
-      ],
+                  if (word.aud != '') {
+                      player.play(word.aud).whenComplete((){
+                        player.clear(word.aud);
+                      });
+                  }
+                  
+                },
+                child: word.aud == ''|| word.aud == null? Container() : Icon(Icons.headset, color: Theme.of(context).accentColor)
+                )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

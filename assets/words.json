@@ -220,5 +220,579 @@
       "spa": "Sabado",
       "aud": ""
     }
-  ]
+  ],
+  "Months" : [
+    {
+      "def": "Enerugü",
+      "eng": "January",
+      "spa": "Enero",
+      "aud": ""
+    },
+    {
+      "def": "Biama-hati",
+      "eng": "February",
+      "spa": "Febrero",
+      "aud": ""
+    },
+    {
+      "def": "Ürüwa-hati",
+      "eng": "March",
+      "spa": "Marzo",
+      "aud": ""
+    },
+    {
+      "def": "Gadürü-hati",
+      "eng": "April",
+      "spa": "Abril",
+      "aud": ""
+    },
+    {
+      "def": "Seingü-hati",
+      "eng": "May",
+      "spa": "Mayo",
+      "aud": ""
+    },
+    {
+      "def": "Sisi-hati",
+      "eng": "June",
+      "spa": "Junio",
+      "aud": ""
+    },
+    {
+      "def": "Seidü-hati",
+      "eng": "July",
+      "spa": "Julio",
+      "aud": ""
+    },
+    {
+      "def": "Widü-hati",
+      "eng": "August",
+      "spa": "Agosto",
+      "aud": ""
+    },
+    {
+      "def": "Nefü-hati",
+      "eng": "September",
+      "spa": "Septiembre",
+      "aud": ""
+    },
+    {
+      "def": "Disi-hati",
+      "eng": "October",
+      "spa": "Octubre",
+      "aud": ""
+    },
+    {
+      "def": "Unsu-hati",
+      "eng": "November",
+      "spa": "Noviembre",
+      "aud": ""
+    },
+    {
+      "def": "Dusu-hati",
+      "eng": "December",
+      "spa": "Diciembre",
+      "aud": ""
+    }
+  ],
+  "Pronouns" : [
+    {
+      "def": "Au, Nugía",
+      "eng": "I, Me",
+      "spa": "Yo, Mi",
+      "aud": ""
+    },
+    {
+      "def": "Amürü, Bugía, Buguya",
+      "eng": "You",
+      "spa": "Tu, Ud",
+      "aud": ""
+    },
+    {
+      "def": "Tugía, Tuguya",
+      "eng": "She",
+      "spa": "Ella",
+      "aud": ""
+    },
+    {
+      "def": "Ligía",
+      "eng": "He",
+      "spa": "El",
+      "aud": ""
+    },
+    {
+      "def": "Hagía",
+      "eng": "They",
+      "spa": "Ellos",
+      "aud": ""
+    },
+    {
+      "def": "Wagía",
+      "eng": "We, Us",
+      "spa": "Nosotros",
+      "aud": ""
+    },
+    {
+      "def": "Hugía",
+      "eng": "You(Plural)",
+      "spa": "Ustedes",
+      "aud": ""
+    }
+  ],
+  "Phrases" : [
+    {
+      "def": "Máburiga",
+      "eng": "Hello",
+      "spa": "Hola",
+      "aud": ""
+    },
+    {
+      "def": "Idabíña?",
+      "eng": "How are you?",
+      "spa": "Como estas?",
+      "aud": ""
+    },
+    {
+      "def": "ka fidu ínwirúbei?",
+      "eng": "What's up?",
+      "spa": "Que hay?",
+      "aud": ""
+    },
+    {
+      "def": "Hinsietibu nu",
+      "eng": "I love you",
+      "spa": "Te quiero",
+      "aud": ""
+    },
+    {
+      "def": "Ayó!",
+      "eng": "Goodbye!",
+      "spa": "Adios!",
+      "aud": ""
+    },
+    {
+      "def": "Seremein, Teinki",
+      "eng": "Thank you",
+      "spa": "Gracias",
+      "aud": ""
+    },
+    {
+      "def": "Fulesi",
+      "eng": "Please",
+      "spa": "Por favor",
+      "aud": ""
+    },
+    {
+      "def": "Buiti binafin",
+      "eng": "Good morning",
+      "spa": "Buenos dias",
+      "aud": ""
+    },
+    {
+      "def": "Buiti rabounweyu",
+      "eng": "Good afternoon",
+      "spa": "Buenas tardes",
+      "aud": ""
+    },
+    {
+      "def": "Buiti guñoun",
+      "eng": "Good evening, Good night",
+      "spa": "Buenas noches",
+      "aud": ""
+    }
+  ],
+  "Family" : [
+    {
+      "def": "Isani (Iraü)",
+      "eng": "Son, Daughter",
+      "spa": "Hijo(a)",
+      "aud": ""
+    },
+    {
+      "def": "Ibari",
+      "eng": "Grandson, Granddaughter",
+      "spa": "Nieto(a)",
+      "aud": ""
+    },
+    {
+      "def": "Iámasiri",
+      "eng": "Godson, Goddaughter",
+      "spa": "Ahijado(a)",
+      "aud": ""
+    },
+    {
+      "def": "Gamadaguaü (Gaduherunwadi)",
+      "eng": "Siblings",
+      "spa": "Hermanos",
+      "aud": ""
+    },
+    {
+      "def": "Íbiri (Namule / Nibugaña)",
+      "eng": "Brother",
+      "spa": "Hermano(a)",
+      "aud": ""
+    },
+    {
+      "def": "Itu (Namulelua / Nibugaña)",
+      "eng": "Sister",
+      "spa": "Hermano(a)",
+      "aud": ""
+    },
+    {
+      "def": "Idúhei (Naufuri)",
+      "eng": "Cousin",
+      "spa": "Primo(a)",
+      "aud": ""
+    },
+    {
+      "def": "Inibu",
+      "eng": "Nephew",
+      "spa": "Sobrino",
+      "aud": ""
+    },
+    {
+      "def": "Ibasei",
+      "eng": "Niece",
+      "spa": "Sobrina",
+      "aud": ""
+    },
+    {
+      "def": "Agüburigu",
+      "eng": "Parents",
+      "spa": "Padres, Papas",
+      "aud": ""
+    },
+    {
+      "def": "Uguchuru",
+      "eng": "Mother, Mom",
+      "spa": "Madre, Mama",
+      "aud": ""
+    },
+    {
+      "def": "Úguchi (Úguchili)",
+      "eng": "Father, Dad",
+      "spa": "Padre, Papa",
+      "aud": ""
+    },
+    {
+      "def": "Áruguti",
+      "eng": "Grandfather, Grandpa",
+      "spa": "Abuelo",
+      "aud": ""
+    },
+    {
+      "def": "Agütü",
+      "eng": "Grandmother, Grandma",
+      "spa": "Abuela",
+      "aud": ""
+    },
+    {
+      "def": "Ebenenegu",
+      "eng": "Godparents",
+      "spa": "Padrinos",
+      "aud": ""
+    },
+    {
+      "def": "Ebenenei",
+      "eng": "Godfather, Godmother",
+      "spa": "Padrino (Madrina)",
+      "aud": ""
+    },
+    {
+      "def": "Iyawuritei",
+      "eng": "Uncle",
+      "spa": "Tio",
+      "aud": ""
+    },
+    {
+      "def": "Oufuri",
+      "eng": "Aunt",
+      "spa": "Tia",
+      "aud": ""
+    },
+    {
+      "def": "Iduheñun (Inibâfu)",
+      "eng": "Relatives",
+      "spa": "Parientes, Familiares",
+      "aud": ""
+    }
+  ],
+  "Numbers" : [
+    {
+      "def": "Aban",
+      "eng": "One",
+      "spa": "Uno",
+      "aud": ""
+    },
+    {
+      "def": "Biama",
+      "eng": "Two",
+      "spa": "Dos",
+      "aud": ""
+    },
+    {
+      "def": "Ürüwa",
+      "eng": "Three",
+      "spa": "Tres",
+      "aud": ""
+    },
+    {
+      "def": "Gadürü",
+      "eng": "Four",
+      "spa": "Cuatro",
+      "aud": ""
+    },
+    {
+      "def": "Seingü",
+      "eng": "Five",
+      "spa": "Cinco",
+      "aud": ""
+    },
+    {
+      "def": "Sisi",
+      "eng": "Six",
+      "spa": "Seis",
+      "aud": ""
+    },
+    {
+      "def": "Seidü",
+      "eng": "Seven",
+      "spa": "siete",
+      "aud": ""
+    },
+    {
+      "def": "Widü",
+      "eng": "Eight",
+      "spa": "Ocho",
+      "aud": ""
+    },
+    {
+      "def": "Nefü",
+      "eng": "Nine",
+      "spa": "Nueve",
+      "aud": ""
+    },
+    {
+      "def": "Disi",
+      "eng": "Ten",
+      "spa": "Diez",
+      "aud": ""
+    },
+    {
+      "def": "Unsu",
+      "eng": "Eleven",
+      "spa": "Once",
+      "aud": ""
+    },
+    {
+      "def": "Dusu",
+      "eng": "Twelve",
+      "spa": "Doce",
+      "aud": ""
+    },
+    {
+      "def": "Tareisi",
+      "eng": "Thirteen",
+      "spa": "Trece",
+      "aud": ""
+    },
+    {
+      "def": "Katorusu",
+      "eng": "Fourteen",
+      "spa": "Catorce",
+      "aud": ""
+    },
+    {
+      "def": "Keinsi",
+      "eng": "Fifteen",
+      "spa": "Quince",
+      "aud": ""
+    },
+    {
+      "def": "Disisisi",
+      "eng": "Sixteen",
+      "spa": "Dieciseis",
+      "aud": ""
+    },
+    {
+      "def": "Disisedü",
+      "eng": "Seventeen",
+      "spa": "Diecisiete",
+      "aud": ""
+    },
+    {
+      "def": "Disiwidü",
+      "eng": "Eighteen",
+      "spa": "Dieciocho",
+      "aud": ""
+    },
+    {
+      "def": "Disinefu",
+      "eng": "Nineteen",
+      "spa": "Diecinueve",
+      "aud": ""
+    },
+    {
+      "def": "Wein",
+      "eng": "Twenty",
+      "spa": "Veinte",
+      "aud": ""
+    },
+    {
+      "def": "Darandi",
+      "eng": "Thirty",
+      "spa": "Treinta",
+      "aud": ""
+    },
+    {
+      "def": "Biawein",
+      "eng": "Forty",
+      "spa": "Cuarenta",
+      "aud": ""
+    },
+    {
+      "def": "Dimisán",
+      "eng": "Fifty",
+      "spa": "Cincuenta",
+      "aud": ""
+    },
+    {
+      "def": "Ürüwawein",
+      "eng": "Sixty",
+      "spa": "Sesenta",
+      "aud": ""
+    },
+    {
+      "def": "Ürüwawein-disi",
+      "eng": "Seventy",
+      "spa": "Setenta",
+      "aud": ""
+    },
+    {
+      "def": "Gadürüwein",
+      "eng": "Eighty",
+      "spa": "Ochenta",
+      "aud": ""
+    },
+    {
+      "def": "Gadürüwein-disi",
+      "eng": "Ninety",
+      "spa": "Noventa",
+      "aud": ""
+    },
+    {
+      "def": "Sán",
+      "eng": "Hundred",
+      "spa": "Cien",
+      "aud": ""
+    },
+    {
+      "def": "Bia-Sán",
+      "eng": "Two-Hundred",
+      "spa": "Doscientos",
+      "aud": ""
+    },
+    {
+      "def": "Ürüwa-Sán",
+      "eng": "Three-Hundred",
+      "spa": "Trescientos",
+      "aud": ""
+    },
+    {
+      "def": "Gadürü-Sán",
+      "eng": "Four-Hundred",
+      "spa": "Cuatrocientos",
+      "aud": ""
+    },
+    {
+      "def": "Seingü-Sán",
+      "eng": "Five-Hundred",
+      "spa": "Quinientos",
+      "aud": ""
+    },
+    {
+      "def": "Sisi-Sán",
+      "eng": "Six-Hundred",
+      "spa": "Seiscientos",
+      "aud": ""
+    },
+    {
+      "def": "Seidü-Sán",
+      "eng": "Seven-Hundred",
+      "spa": "Setecientos",
+      "aud": ""
+    },
+    {
+      "def": "Widü-Sán",
+      "eng": "Eight-Hundred",
+      "spa": "Ochocientos",
+      "aud": ""
+    },
+    {
+      "def": "Nefü-Sán",
+      "eng": "Nine-Hundred",
+      "spa": "Novecientos",
+      "aud": ""
+    },
+    {
+      "def": "Milu",
+      "eng": "Thousand",
+      "spa": "Mil",
+      "aud": ""
+    },
+    {
+      "def": "Bia-Milu",
+      "eng": "Two-Thousand",
+      "spa": "Dosmil",
+      "aud": ""
+    },
+    {
+      "def": "Ürüwa-Milu",
+      "eng": "Three-Thousand",
+      "spa": "Tresmil",
+      "aud": ""
+    },
+    {
+      "def": "Gadürü-Milu",
+      "eng": "Four-Thousand",
+      "spa": "Cuatromil",
+      "aud": ""
+    },
+    {
+      "def": "Seingü-Milu",
+      "eng": "Five-Thousand",
+      "spa": "Cincomil",
+      "aud": ""
+    },
+    {
+      "def": "Sisi-Milu",
+      "eng": "Six-Thousand",
+      "spa": "Seismil",
+      "aud": ""
+    },
+    {
+      "def": "Seidü-Milu",
+      "eng": "Seven-Thousand",
+      "spa": "Sietemil",
+      "aud": ""
+    },
+    {
+      "def": "Widü-Milu",
+      "eng": "Eight-Thousand",
+      "spa": "Ochomil",
+      "aud": ""
+    },
+    {
+      "def": "Nefü-Milu",
+      "eng": "Nine-Thousand",
+      "spa": "Nuevemil",
+      "aud": ""
+    },
+    {
+      "def": "Disi-Milu",
+      "eng": "Ten-Thousand",
+      "spa": "Diezmil",
+      "aud": ""
+    }
+  ] 
 }
