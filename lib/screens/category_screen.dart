@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garifuna_movil_app/models/db.dart';
-import 'package:garifuna_movil_app/models/wordDB.dart';
+import 'package:garifuna_movil_app/models/word.dart';
 import 'package:garifuna_movil_app/ui/category_list_item.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  List<WordDb> _words = [];
+  List<Word> _words = [];
   
   @override
   void initState() {

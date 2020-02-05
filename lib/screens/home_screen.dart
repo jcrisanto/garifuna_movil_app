@@ -6,14 +6,15 @@ import 'package:garifuna_movil_app/ui/fab.widget.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title;
-  
+
   HomeScreen({this.title});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   Text appTitle;
   String search = '';
   TextEditingController searchController;
@@ -22,10 +23,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   var searchIcon = MyIcons.searchIcon;
   TabController tabController;
   Color appBarColor;
+  IconData favToggle;
   var searchIsVisible = false;
   var fabIsVisible = false;
-  final GlobalKey<DictionaryFragmentState> _myWidgetState = GlobalKey<DictionaryFragmentState>();
-  
+  bool favIsVisible = false;
+  final GlobalKey<DictionaryFragmentState> _myWidgetState =
+      GlobalKey<DictionaryFragmentState>();
+
   @override
   void initState() {
     super.initState();
@@ -45,12 +49,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
     appBarColor = Color(0xFF009688);
     tabController = TabController(length: 2, vsync: this);
+    favToggle = Icons.star_border;
     tabController.addListener(() {
       setState(() {
         if (tabController.index == 1) {
           appBarColor = Color(0xFF3F51B5);
           fabIsVisible = true;
           searchIsVisible = true;
+          favIsVisible = true;
         } else {
           appBarColor = Color(0xFF009688);
           fabIsVisible = false;
@@ -61,15 +67,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       });
     });
     searchController.addListener(() {
-       _myWidgetState.currentState.updateList(searchController.text);
+      _myWidgetState.currentState.updateToSearchList(searchController.text);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> options = <String>[
-      'Share application'
-    ];
+    List<String> options = <String>['Share application'];
     void optionAction(String option) {}
 
     return DefaultTabController(
@@ -97,15 +101,37 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     if (searchIcon == MyIcons.searchIcon) {
                       currentWidget = searchBar;
                       searchIcon = MyIcons.cancelIcon;
+                      favToggle = Icons.star_border;
+                      favIsVisible = false;
                     } else {
                       currentWidget = appTitle;
                       searchIcon = MyIcons.searchIcon;
                       searchController.text = '';
-                      _myWidgetState.currentState.fillList();
+                      _myWidgetState.currentState.updateToFullList();
+                      favIsVisible = true;
                     }
                   });
                 },
               ),
+            ),
+            Visibility(
+              visible: favIsVisible,
+              child: IconButton(
+                  icon: Icon(favToggle),
+                  onPressed: () {
+                    _myWidgetState.currentState.updateToFavList();
+                    if (favToggle == Icons.star_border) {
+                      setState(() {
+                        favToggle = Icons.star;
+                      });
+                      _myWidgetState.currentState.updateToFavList();
+                    } else {
+                      setState(() {
+                        favToggle = Icons.star_border;
+                      });
+                      _myWidgetState.currentState.updateToFullList();
+                    }
+                  }),
             ),
             PopupMenuButton<String>(
                 onSelected: optionAction,
@@ -122,18 +148,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         body: TabBarView(
           controller: tabController,
           children: <Widget>[
-            CategoriesFragment((title, group){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (_context) => CategoryScreen(title, group),
-              ));
-            }), 
-            DictionaryFragment(key:_myWidgetState),
-           ],
+            CategoriesFragment((title, group) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_context) => CategoryScreen(title, group),
+                  ));
+            }),
+            DictionaryFragment(key: _myWidgetState),
+          ],
         ),
-        floatingActionButton: Fab(
-          isVisible: fabIsVisible,
-          onPressed:(){}
-          ),
+        floatingActionButton: Fab(isVisible: fabIsVisible, onPressed: () {}),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:garifuna_movil_app/models/wordDB.dart';
+import 'package:garifuna_movil_app/models/word.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -10,8 +10,10 @@ class DBProvider {
 
   static final DBProvider db = DBProvider._();
   static const WORDSTABLE = 'words';
+  static const ID = 'id';
   static const DEF = 'def';
   static const GRP = 'grp';
+  static const FAV = 'fav';
   
   Future<Database> getDB() async {
    
@@ -41,7 +43,7 @@ class DBProvider {
   }
 
    
-  Future<int> addWord(WordDb w) async {
+  Future<int> addWord(Word w) async {
     final db = await getDB();
     var raw = await db.insert(
       WORDSTABLE,
@@ -53,26 +55,36 @@ class DBProvider {
     return raw;
   }
 
-  Future<List<WordDb>> getAllWords() async {
+  Future<List<Word>> getAllWords() async {
     
     final db = await getDB();
     List<Map<String, dynamic>> dbWords = await db.query(WORDSTABLE, orderBy: '$DEF ASC');
-    List<WordDb> words = dbWords.map((dbw) => WordDb.fromMap(dbw)).toList();
+    List<Word> words = dbWords.map((dbw) => Word.fromMap(dbw)).toList();
     db.close();
 
     return words;
 
   }
 
-  Future<List<WordDb>> getWordsByGroup(String group) async {
+  Future<List<Word>> getWordsByGroup(String group) async {
     
     final db = await getDB();
     List<Map<String, dynamic>> dbWords = await db.query(WORDSTABLE, where: '$GRP = ?', whereArgs: [group]);
-    List<WordDb> words = dbWords.map((dbw) => WordDb.fromMap(dbw)).toList();
+    List<Word> words = dbWords.map((dbw) => Word.fromMap(dbw)).toList();
     db.close();
     
     return words;
 
   }
+
+  Future<int> setWordFav(int id, int val) async {
+
+    final db = await getDB();
+    int result = await db.rawUpdate('UPDATE $WORDSTABLE SET $FAV = ? WHERE $ID = ?',
+    [val, id]);
+    return result;
+
+  }
+
   
 }

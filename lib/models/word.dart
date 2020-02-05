@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WordDb {
+class Word {
     int id;
     String def;
     String eng;
@@ -9,9 +9,9 @@ class WordDb {
     String grp;
     int fav;
 
-    WordDb({this.id, @required this.def, @required this.eng, @required this.spa, this.aud, this.grp, this.fav});
+    Word({this.id, @required this.def, @required this.eng, @required this.spa, this.aud, this.grp, this.fav});
 
-    WordDb.fromMap(Map map) {
+    Word.fromMap(Map map) {
       id = map['id'];
       def = map['def'];
       eng = map['eng'];
@@ -27,7 +27,7 @@ class WordDb {
       'eng' : eng,
       'spa': spa,
       'aud' : aud,
-      'group' : grp,
+      'grp' : grp,
       'fav' : fav
     };
 
