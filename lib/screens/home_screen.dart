@@ -182,7 +182,10 @@ class _HomeScreenState extends State<HomeScreen>
               } else if (fabIcon == FabIcon.open) {
                 if (_speech.isAvailable && !_speech.isListening) {
                   setState(() {
-                    appBarWidget = Text('listening...', style: TextStyle(color: Theme.of(context).accentColor, fontStyle: FontStyle.italic));
+                    appBarWidget = Text('listening...',
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontStyle: FontStyle.italic));
                     searchIsVisible = false;
                     favIsVisible = false;
                     fabIcon = FabIcon.active;
