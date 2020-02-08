@@ -17,15 +17,14 @@ class DictionaryFragmentState extends State<DictionaryFragment> {
   updateToSearchList(String search) {
     setState(() {
       _selectedWords = _dbWords
-          .where((w) => w.spa.toLowerCase().startsWith(search.toLowerCase()))
+          .where((w) => w.eng.toLowerCase().startsWith(search.toLowerCase()))
           .toList();
     });
   }
 
   updateToFavList() {
     setState(() {
-      _selectedWords = _selectedWords
-          .where((w) => w.fav == 1).toList();
+      _selectedWords = _selectedWords.where((w) => w.fav == 1).toList();
     });
   }
 
@@ -48,15 +47,17 @@ class DictionaryFragmentState extends State<DictionaryFragment> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: EdgeInsets.all(10.0),
-        itemCount: _selectedWords.length,
-        itemBuilder: (BuildContext ctxt, int index) {
-          return DictionaryListItem(_selectedWords[index], () {
-            setState(() {
-              _selectedWords = _selectedWords;
+    return _dbWords.length == 0
+        ? Center(child: CircularProgressIndicator())
+        : ListView.builder(
+            padding: EdgeInsets.all(10.0),
+            itemCount: _selectedWords.length,
+            itemBuilder: (BuildContext ctxt, int index) {
+              return DictionaryListItem(_selectedWords[index], () {
+                setState(() {
+                  _selectedWords = _selectedWords;
+                });
+              });
             });
-          });
-        });
   }
 }

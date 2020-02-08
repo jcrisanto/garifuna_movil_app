@@ -3,6 +3,8 @@ import 'package:garifuna_movil_app/fragments/categories_fragment.dart';
 import 'package:garifuna_movil_app/fragments/dictionary_fragment.dart';
 import 'package:garifuna_movil_app/screens/category_screen.dart';
 import 'package:garifuna_movil_app/ui/fab.widget.dart';
+import 'package:speech_to_text/speech_recognition_error.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title;
@@ -15,24 +17,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  final GlobalKey<DictionaryFragmentState> _myWidgetState =
+      GlobalKey<DictionaryFragmentState>();
   Text appTitle;
   String search = '';
   TextEditingController searchController;
   TextField searchBar;
-  Widget currentWidget;
-  var searchIcon = MyIcons.searchIcon;
+  Widget appBarWidget;
+  IconData searchIcon = SearchIcon.search;
   TabController tabController;
   Color appBarColor;
-  IconData favToggle;
-  var searchIsVisible = false;
-  var fabIsVisible = false;
+  IconData favIcon;
+  IconData fabIcon;
+  bool searchIsVisible = false;
+  bool fabIsVisible = false;
   bool favIsVisible = false;
-  final GlobalKey<DictionaryFragmentState> _myWidgetState =
-      GlobalKey<DictionaryFragmentState>();
+  SpeechToText _speech;
 
   @override
   void initState() {
     super.initState();
+    initSpeech();
     appTitle = Text(widget.title);
     searchController = TextEditingController();
     searchBar = TextField(
@@ -45,11 +50,11 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       controller: searchController,
     );
-    currentWidget = appTitle;
+    appBarWidget = appTitle;
 
     appBarColor = Color(0xFF009688);
     tabController = TabController(length: 2, vsync: this);
-    favToggle = Icons.star_border;
+    favIcon = FavIcon.empty;
     tabController.addListener(() {
       setState(() {
         if (tabController.index == 1) {
@@ -61,8 +66,9 @@ class _HomeScreenState extends State<HomeScreen>
           appBarColor = Color(0xFF009688);
           fabIsVisible = false;
           searchIsVisible = false;
-          currentWidget = appTitle;
-          searchIcon = MyIcons.searchIcon;
+          appBarWidget = appTitle;
+          searchIcon = SearchIcon.search;
+          favIsVisible = false;
         }
       });
     });
@@ -81,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen>
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: appBarColor,
-          title: currentWidget,
+          title: appBarWidget,
           bottom: TabBar(
             controller: tabController,
             tabs: [
@@ -98,17 +104,20 @@ class _HomeScreenState extends State<HomeScreen>
                 icon: Icon(searchIcon),
                 onPressed: () {
                   setState(() {
-                    if (searchIcon == MyIcons.searchIcon) {
-                      currentWidget = searchBar;
-                      searchIcon = MyIcons.cancelIcon;
-                      favToggle = Icons.star_border;
+                    if (searchIcon == SearchIcon.search) {
+                      appBarWidget = searchBar;
+                      searchIcon = SearchIcon.cancel;
+                      favIcon = FavIcon.empty;
                       favIsVisible = false;
+                      fabIsVisible = false;
+                      fabIsVisible = false;
                     } else {
-                      currentWidget = appTitle;
-                      searchIcon = MyIcons.searchIcon;
+                      appBarWidget = appTitle;
+                      searchIcon = SearchIcon.search;
                       searchController.text = '';
                       _myWidgetState.currentState.updateToFullList();
                       favIsVisible = true;
+                      fabIsVisible = true;
                     }
                   });
                 },
@@ -117,17 +126,17 @@ class _HomeScreenState extends State<HomeScreen>
             Visibility(
               visible: favIsVisible,
               child: IconButton(
-                  icon: Icon(favToggle),
+                  icon: Icon(favIcon),
                   onPressed: () {
                     _myWidgetState.currentState.updateToFavList();
-                    if (favToggle == Icons.star_border) {
+                    if (favIcon == FavIcon.empty) {
                       setState(() {
-                        favToggle = Icons.star;
+                        favIcon = FavIcon.full;
                       });
                       _myWidgetState.currentState.updateToFavList();
                     } else {
                       setState(() {
-                        favToggle = Icons.star_border;
+                        favIcon = FavIcon.empty;
                       });
                       _myWidgetState.currentState.updateToFullList();
                     }
@@ -158,14 +167,70 @@ class _HomeScreenState extends State<HomeScreen>
             DictionaryFragment(key: _myWidgetState),
           ],
         ),
-        floatingActionButton: Fab(isVisible: fabIsVisible, onPressed: () {}),
+        floatingActionButton: Fab(
+            isVisible: fabIsVisible,
+            icon: fabIcon,
+            onPressed: () {
+              if (fabIcon == FabIcon.close) {
+                _myWidgetState.currentState.updateToFullList();
+                setState(() {
+                  searchIsVisible = true;
+                  favIsVisible = true;
+                  fabIcon = FabIcon.open;
+                  appBarWidget = appTitle;
+                });
+              } else if (fabIcon == FabIcon.open) {
+                if (_speech.isAvailable && !_speech.isListening) {
+                  setState(() {
+                    appBarWidget = Text('listening...', style: TextStyle(color: Theme.of(context).accentColor, fontStyle: FontStyle.italic));
+                    searchIsVisible = false;
+                    favIsVisible = false;
+                    fabIcon = FabIcon.active;
+                  });
+                  _speech.listen(onResult: (result) {
+                    appBarWidget = Text(_speech.lastRecognizedWords);
+                    _myWidgetState.currentState
+                        .updateToSearchList(_speech.lastRecognizedWords);
+                    if (result.finalResult) {
+                      _speech.cancel();
+                      setState(() {
+                        fabIcon = FabIcon.close;
+                      });
+                    }
+                  });
+                } else {}
+              }
+            }),
       ),
     );
   }
+
+  initSpeech() async {
+    setState(() {
+      fabIcon = FabIcon.open;
+    });
+    _speech = SpeechToText();
+    await _speech.initialize(onError: onSpeechErrorHandler);
+  }
+
+  onSpeechErrorHandler(SpeechRecognitionError error) {
+    _speech.cancel();
+    initSpeech();
+  }
 }
 
-class MyIcons {
-  static const searchIcon = Icons.search;
-  static const listIcon = Icons.format_list_bulleted;
-  static const cancelIcon = Icons.cancel;
+class SearchIcon {
+  static const search = Icons.search;
+  static const cancel = Icons.cancel;
+}
+
+class FavIcon {
+  static const full = Icons.star;
+  static const empty = Icons.star_border;
+}
+
+class FabIcon {
+  static const open = Icons.mic;
+  static const active = Icons.blur_on;
+  static const close = Icons.close;
 }

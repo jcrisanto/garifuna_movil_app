@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:garifuna_movil_app/models/selection.dart';
 
 class CategoriesFragment extends StatelessWidget {
   final Function(String, String) navigateToCategory;
 
-  final categories = [
-    {'title': 'Animals', 'group': 'Animal'},
-    {'title': 'Colors', 'group': 'Color'},
-    {'title': 'Months', 'group': 'Month'},
-    {'title': 'Phrases', 'group': 'Phrase'},
-    {'title': 'Numbers', 'group': 'Number'},
-    {'title': 'Family', 'group': 'Family'},
-    {'title': 'Pronouns', 'group': 'Pronoun'},
-    {'title': 'Days', 'group': 'Day'}
+  final List<Selection> categories = [
+    Selection('Animals', 'Animal'),
+    Selection('Colors', 'Color'),
+    Selection('Months', 'Month'),
+    Selection('Phrases', 'Phrase'),
+    Selection('Numbers', 'Number'),
+    Selection('Family', 'Family'),
+    Selection('Pronouns', 'Pronoun'),
+    Selection('Days', 'Day')
   ];
 
   CategoriesFragment(this.navigateToCategory);
@@ -28,13 +29,13 @@ class CategoriesFragment extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: InkWell(
             onTap: () => navigateToCategory(
-                categories[index]['title'], categories[index]['group']),
+                categories[index].title, categories[index].group),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Expanded(child: SvgPicture.asset('assets/icons/pollo.svg')),
-                Text(categories[index]['title']),
+                Text(categories[index].title),
               ],
             ),
           ),

@@ -4,10 +4,9 @@ import 'package:garifuna_movil_app/models/word.dart';
 import 'package:garifuna_movil_app/ui/category_list_item.dart';
 
 class CategoryScreen extends StatefulWidget {
- 
   final String title;
   final String group;
-  
+
   const CategoryScreen(this.title, this.group);
 
   @override
@@ -16,33 +15,32 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   List<Word> _words = [];
-  
+
   @override
   void initState() {
     super.initState();
 
-      DBProvider.db.getWordsByGroup(widget.group).then((dbws) {
-        setState(() {
-          _words = dbws;
-        });
+    DBProvider.db.getWordsByGroup(widget.group).then((dbws) {
+      setState(() {
+        _words = dbws;
       });
-   
+    });
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title + ' (${_words.length})'),
-        
       ),
-      body: ListView.builder(
-          padding: EdgeInsets.all(10.0),
-          itemCount: _words.length,
-          itemBuilder: (BuildContext ctxt, int index) {
-            return CategoryListItem(_words[index]);
-          }),
+      body: _words.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              padding: EdgeInsets.all(10.0),
+              itemCount: _words.length,
+              itemBuilder: (BuildContext ctxt, int index) {
+                return CategoryListItem(_words[index]);
+              }),
     );
   }
 }

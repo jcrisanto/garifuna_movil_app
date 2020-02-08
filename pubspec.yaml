@@ -27,6 +27,8 @@ dependencies:
   audioplayers: ^0.14.0
   sqflite: ^1.2.0
   path_provider: ^1.6.0
+  permission_handler: '^4.2.0+hotfix.3'
+  speech_to_text: ^0.8.0
 
 dev_dependencies:
   flutter_test:

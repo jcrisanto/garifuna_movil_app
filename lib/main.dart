@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garifuna_movil_app/screens/home_screen.dart';
 
 
-void main() async {
+void main() {
   runApp(MyApp());
 } 
 
