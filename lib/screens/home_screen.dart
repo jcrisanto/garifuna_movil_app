@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garifuna_movil_app/fragments/categories_fragment.dart';
 import 'package:garifuna_movil_app/fragments/dictionary_fragment.dart';
 import 'package:garifuna_movil_app/screens/category_screen.dart';
+import 'package:garifuna_movil_app/screens/settings_screen.dart';
 import 'package:garifuna_movil_app/ui/fab.widget.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -62,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen>
           fabIsVisible = true;
           searchIsVisible = true;
           favIsVisible = true;
+          favIcon = FavIcon.empty;
         } else {
           appBarColor = Color(0xFF009688);
           fabIsVisible = false;
@@ -79,8 +81,20 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    List<String> options = <String>['Share application'];
-    void optionAction(String option) {}
+    List<String> options = <String>['Share application', 'Settings'];
+    void optionAction(String option) {
+      switch (option) {
+        case 'Settings': 
+          Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_context) => SettingsScreen(),
+          ));
+          break;
+        default:
+      }
+      
+    }
 
     return DefaultTabController(
       length: 2,
@@ -94,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen>
               Tab(
                 text: 'CATEGORIES',
               ),
-              Tab(text: 'DICTIONARY')
+              Tab(text: 'DICTIONARY'),
             ],
           ),
           actions: <Widget>[
@@ -164,9 +178,10 @@ class _HomeScreenState extends State<HomeScreen>
                     builder: (_context) => CategoryScreen(title, group),
                   ));
             }),
-            DictionaryFragment(key: _myWidgetState),
+            DictionaryFragment(key: _myWidgetState)
           ],
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Fab(
             isVisible: fabIsVisible,
             icon: fabIcon,
@@ -182,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen>
               } else if (fabIcon == FabIcon.open) {
                 if (_speech.isAvailable && !_speech.isListening) {
                   setState(() {
-                    appBarWidget = Text('listening...',
+                    appBarWidget = Text('Listening...',
                         style: TextStyle(
                             color: Theme.of(context).accentColor,
                             fontStyle: FontStyle.italic));
@@ -191,7 +206,8 @@ class _HomeScreenState extends State<HomeScreen>
                     fabIcon = FabIcon.active;
                   });
                   _speech.listen(onResult: (result) {
-                    appBarWidget = Text(_speech.lastRecognizedWords);
+                    appBarWidget =
+                        Text(firstCapNoPeriod(_speech.lastRecognizedWords));
                     _myWidgetState.currentState
                         .updateToSearchList(_speech.lastRecognizedWords);
                     if (result.finalResult) {
@@ -219,6 +235,9 @@ class _HomeScreenState extends State<HomeScreen>
   onSpeechErrorHandler(SpeechRecognitionError error) {
     _speech.cancel();
     initSpeech();
+    setState(() {
+      appBarWidget = appTitle;
+    });
   }
 }
 
@@ -236,4 +255,11 @@ class FabIcon {
   static const open = Icons.mic;
   static const active = Icons.blur_on;
   static const close = Icons.close;
+}
+
+String firstCapNoPeriod(String text) {
+  String holder = '';
+  holder = text.replaceFirst(text[0], text[0].toUpperCase());
+  holder = holder.replaceAll('.', '');
+  return holder;
 }

@@ -34,7 +34,7 @@ class CategoriesFragment extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(child: SvgPicture.asset('assets/icons/pollo.svg')),
+                Expanded(child: SvgPicture.asset('assets/icons/animals.svg')),
                 Text(categories[index].title),
               ],
             ),

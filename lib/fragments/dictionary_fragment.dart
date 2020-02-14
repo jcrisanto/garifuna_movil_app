@@ -47,6 +47,7 @@ class DictionaryFragmentState extends State<DictionaryFragment> {
 
   @override
   Widget build(BuildContext context) {
+    print("******DIC_FRAGMENT_BUILT*****");
     return _dbWords.length == 0
         ? Center(child: CircularProgressIndicator())
         : ListView.builder(

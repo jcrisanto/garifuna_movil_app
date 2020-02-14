@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^1.6.0
   permission_handler: '^4.2.0+hotfix.3'
   speech_to_text: ^0.8.0
+  shared_preferences: ^0.5.6+1
 
 dev_dependencies:
   flutter_test:
