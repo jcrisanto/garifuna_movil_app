@@ -13,12 +13,23 @@ class DictionaryFragment extends StatefulWidget {
 class DictionaryFragmentState extends State<DictionaryFragment> {
   List<Word> _dbWords = [];
   List<Word> _selectedWords = [];
+  String _lang;
 
   updateToSearchList(String search) {
     setState(() {
-      _selectedWords = _dbWords
-          .where((w) => w.eng.toLowerCase().startsWith(search.toLowerCase()))
-          .toList();
+      _selectedWords = _dbWords.where((w) {
+        switch (_lang) {
+          case 'English':
+            return w.eng.toLowerCase().startsWith(search.toLowerCase());
+            break;
+          case 'Spanish':
+            return w.spa.toLowerCase().startsWith(search.toLowerCase());
+            break;
+          default:
+            return w.def.toLowerCase().startsWith(search.toLowerCase());
+            break;
+        }
+      }).toList();
     });
   }
 
@@ -34,6 +45,10 @@ class DictionaryFragmentState extends State<DictionaryFragment> {
     });
   }
 
+  updateLang(String lang) {
+    this._lang = lang;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +62,6 @@ class DictionaryFragmentState extends State<DictionaryFragment> {
 
   @override
   Widget build(BuildContext context) {
-    print("******DIC_FRAGMENT_BUILT*****");
     return _dbWords.length == 0
         ? Center(child: CircularProgressIndicator())
         : ListView.builder(

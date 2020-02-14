@@ -4,6 +4,8 @@ import 'package:garifuna_movil_app/fragments/dictionary_fragment.dart';
 import 'package:garifuna_movil_app/screens/category_screen.dart';
 import 'package:garifuna_movil_app/screens/settings_screen.dart';
 import 'package:garifuna_movil_app/ui/fab.widget.dart';
+import 'package:garifuna_movil_app/ui/my_text_field.dart';
+import 'package:garifuna_movil_app/utils/prefs.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
@@ -33,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen>
   bool searchIsVisible = false;
   bool fabIsVisible = false;
   bool favIsVisible = false;
+  bool menuIsVisible = true;
   SpeechToText _speech;
+  String searchHintText;
 
   @override
   void initState() {
@@ -46,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen>
       cursorColor: Colors.white,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintText: 'Buscar',
+        hintText: searchHintText,
         hintStyle: TextStyle(color: Colors.white54),
       ),
       controller: searchController,
@@ -84,16 +88,15 @@ class _HomeScreenState extends State<HomeScreen>
     List<String> options = <String>['Share application', 'Settings'];
     void optionAction(String option) {
       switch (option) {
-        case 'Settings': 
+        case 'Settings':
           Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_context) => SettingsScreen(),
-          ));
+              context,
+              MaterialPageRoute(
+                builder: (_context) => SettingsScreen(),
+              ));
           break;
         default:
       }
-      
     }
 
     return DefaultTabController(
@@ -119,12 +122,21 @@ class _HomeScreenState extends State<HomeScreen>
                 onPressed: () {
                   setState(() {
                     if (searchIcon == SearchIcon.search) {
-                      appBarWidget = searchBar;
+                      Prefs.getInstance().getValue(Prefs.SEARCH).then((lang) {
+                        this._myWidgetState.currentState.updateLang(lang ?? 'English');
+                        setState(() {
+                          appBarWidget = JCTextField(
+                              hintText: 'Buscar (${lang ?? 'English'})',
+                              controller: searchController);
+                        });
+                      });
+
                       searchIcon = SearchIcon.cancel;
                       favIcon = FavIcon.empty;
                       favIsVisible = false;
                       fabIsVisible = false;
                       fabIsVisible = false;
+                      menuIsVisible = false;
                     } else {
                       appBarWidget = appTitle;
                       searchIcon = SearchIcon.search;
@@ -132,6 +144,7 @@ class _HomeScreenState extends State<HomeScreen>
                       _myWidgetState.currentState.updateToFullList();
                       favIsVisible = true;
                       fabIsVisible = true;
+                      menuIsVisible = true;
                     }
                   });
                 },
@@ -156,16 +169,19 @@ class _HomeScreenState extends State<HomeScreen>
                     }
                   }),
             ),
-            PopupMenuButton<String>(
-                onSelected: optionAction,
-                itemBuilder: (BuildContext context) {
-                  return options.map((String option) {
-                    return PopupMenuItem<String>(
-                      value: option,
-                      child: Text(option),
-                    );
-                  }).toList();
-                })
+            Visibility(
+              visible: menuIsVisible,
+              child: PopupMenuButton<String>(
+                  onSelected: optionAction,
+                  itemBuilder: (BuildContext context) {
+                    return options.map((String option) {
+                      return PopupMenuItem<String>(
+                        value: option,
+                        child: Text(option),
+                      );
+                    }).toList();
+                  }),
+            )
           ],
         ),
         body: TabBarView(
